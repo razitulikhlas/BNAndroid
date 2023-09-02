@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informasi usaha"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:fontFamily="@font/poppins_bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="NPWP"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:id="@+id/tvNPWP"
+            android:textAlignment="textEnd"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="09.254.294.3-407.000"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="NIB usaha"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="9120007172445"
+            android:id="@+id/tvnib"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nama usaha"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="P&amp;D Maju kita bersama"
+            android:id="@+id/tvNameUsaha"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tanggal mulai"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="20 Agustus 2021"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="#F6F8FA" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

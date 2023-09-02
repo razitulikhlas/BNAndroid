@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BankNagari"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.disposisi.PhotoBusinessActivity"
+            android:exported="false" />
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDLfZq8L9lijZQg-hcNZ3j90teyQuoo7rc" />
+
+        <activity
+            android:name=".ui.disposisi.MapsUsahaActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps_usaha" />
+        <activity
+            android:name=".ui.disposisi.SearchDisposisiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.survey.InsertSurveyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.permohonan.InsertApplicationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.disposisi.DetailDisposisiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.DataSkimActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.DashBoardOwnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.disposisi.HomeDisposisiActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.dashboard.DashboardActivity" />
+        <activity
+            android:name=".DasboardPermohonanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.OtpValidationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.liquid.LiquidInpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.calculator.TableCalculatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.calculator.CalculatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mapping.MappingAddDescActivity"
+            android:exported="false" />
+
+        <service
+            android:name="com.razitulikhlas.core.util.maps.LocationService"
+            android:foregroundServiceType="location" />
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".ui.petaCustomer.MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".ui.mapping.MappingDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mapping.MappingAddActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.mapping.MappingActivity" />
+        <activity
+            android:name=".ui.mapping.MappingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.infonaCustomer.InfoCustomerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.OtpActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.razitulikhlas.banknagari.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

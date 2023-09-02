@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informasi nasabah"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:fontFamily="@font/poppins_bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tanggal lahir"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:id="@+id/tvTglLahir"
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="14 Juli 1982"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tempat lahir"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Simabur"
+            android:id="@+id/tvTmptLahir"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nama penjamin"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Yenny rahmat"
+            android:id="@+id/tvPenjamin"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tanggal lahir"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="14 Juli 1982"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="KTP pasangan"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:id="@+id/tvKtpPenjamin"
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="13040441407820003"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nama ibu"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Jasniati"
+            android:id="@+id/tvNameIbu"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Kartu keluarga"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="130404290709005"
+            android:id="@+id/tvkk"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="#F6F8FA" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

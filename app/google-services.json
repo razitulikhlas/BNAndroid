@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1006044178251",
+    "project_id": "nagari-2fee9",
+    "storage_bucket": "nagari-2fee9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006044178251:android:2404001b2feb2ae86eaace",
+        "android_client_info": {
+          "package_name": "com.razitulikhlas.banknagari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006044178251-duaj0uqlsr8idiajgghboic7lrbjks98.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.razitulikhlas.banknagari",
+            "certificate_hash": "c6fc159da2292046c080a2d7e6e6686ccf12c94e"
+          }
+        },
+        {
+          "client_id": "1006044178251-nn70073k55rpmm3n1ti75a1p5gnr6ihu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwpMdvhwyMP8x_k7wYz2VCj_BD3WX-zLs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006044178251-nn70073k55rpmm3n1ti75a1p5gnr6ihu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

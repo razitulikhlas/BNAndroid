@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informasi agunan"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:fontFamily="@font/poppins_bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nama agunan"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:id="@+id/tvNameAgunan"
+            android:textAlignment="textEnd"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Sertifikat tanah"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nomor"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="SHM-098"
+            android:id="@+id/tvNumber"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tahun"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:textAlignment="textEnd"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="1986"
+            android:id="@+id/tvYear"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nilai pasar"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:id="@+id/tvValueMarket"
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Rp. 750.0000.000"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nilai likuidasi"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+        <TextView
+            android:id="@+id/tvValueMarketLiquid"
+            android:textAlignment="textEnd"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Rp. 450.000.000"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"
+            />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="#F6F8FA" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

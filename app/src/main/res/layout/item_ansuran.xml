@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutCompat5"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="2dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="2dp"
+    android:weightSum="5">
+
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:padding="10dp"
+        android:textSize="11sp"
+        tools:text="1"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:fontFamily="@font/poppins_medium"
+        android:id="@+id/tvAp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.1"
+        android:textSize="11sp"
+        android:textAlignment="center"
+        tools:text="Rp 2.500.000"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:fontFamily="@font/poppins_medium"
+        android:textAlignment="center"
+        android:id="@+id/tvFlower"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.1"
+        android:textSize="11sp"
+        tools:text="Rp 1.500.000"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:fontFamily="@font/poppins_medium"
+        android:textAlignment="center"
+        android:id="@+id/tvJA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.1"
+        android:textSize="11sp"
+        tools:text="Rp 3.500.000"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:fontFamily="@font/poppins_medium"
+        android:textAlignment="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:textSize="11sp"
+        android:id="@+id/tvLoan"
+        tools:text="Rp 218.750.000"
+        android:textColor="@color/black" />
+</androidx.appcompat.widget.LinearLayoutCompat>

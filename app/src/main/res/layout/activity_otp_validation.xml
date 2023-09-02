@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".ui.login.OtpValidationActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/icon_sms"
+                android:layout_centerHorizontal="true"
+                tools:ignore="ContentDescription"
+                android:id="@+id/img"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img"
+                android:text="Kode otp telah dikirim ke nomor"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="17sp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/tv1"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv1"
+                tools:text="+6282169146904"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="17sp"
+                android:id="@+id/tvPhone"
+                />
+
+            <com.mukesh.OtpView
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tvPhone"
+                style="@style/OtpWidget.OtpView"
+                android:id="@+id/otpView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                app:OtpLineWidth="2dp"
+                app:OtpLineColor="@color/blue"
+                android:itemBackground="@color/white"
+                app:OtpItemRadius="10dp"
+                app:OtpItemCount="6"
+                android:textColor="@color/black"
+                app:OtpViewType="rectangle"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/otpView"
+                android:id="@+id/layoutLinear"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/code_tidak_diterima"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:id="@+id/tv2"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kirim_ulang_kode"
+                    android:layout_below="@id/tv2"
+                    android:id="@+id/tvResendCode"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:visibility="gone"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_below="@id/tv2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="00:00"
+                    android:id="@+id/tvTime"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:textSize="25sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    />
+            </RelativeLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/verivikasi"
+                android:padding="16dp"
+                android:id="@+id/btnNext"
+                app:cornerRadius="20dp"
+                android:layout_below="@id/otpView"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="100dp"
+                android:backgroundTint="@color/blue"
+                />
+
+
+        </RelativeLayout>
+    </FrameLayout>
+
+
+
