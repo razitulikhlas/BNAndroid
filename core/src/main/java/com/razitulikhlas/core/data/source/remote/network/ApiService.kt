@@ -12,6 +12,11 @@ interface ApiService {
         @Path("phone") phone: String
     ): ResponseCheckPhone
 
+    @GET("api/v1/disposisi/detail/{id}")
+    suspend fun detailDisposisi(
+        @Path("id") id: Int
+    ): ResponseDetailDisposisi
+
     @GET("/api/v1/disposisi")
     suspend fun getData(): ResponseData
 
@@ -31,7 +36,7 @@ interface ApiService {
         @Field("phone") phone:String,
         @Field("skim_kredit") skim_kredit:String,
         @Field("sektor_usaha") sektor_usaha:String,
-        @Field("plafond") plafond:Int,
+        @Field("plafond") plafond:String,
         @Field("jangka_waktu") jangka_waktu:Int,
         @Field("status") status:Int = 1,
         @Field("keterangan") keterangan:String? = null,
@@ -51,6 +56,11 @@ interface ApiService {
         @Path("skim") skim:String,
         @Path("level") level:Int
     ):ResponseDataSkim
+
+    @GET("/api/v1/disposisi/search/{pemohon}")
+    suspend fun search(
+        @Path("pemohon") pemohon:String
+    ):ResponseSearch
 
     @Multipart
     @POST("/api/v1/infousaha")

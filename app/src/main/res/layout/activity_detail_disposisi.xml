@@ -50,18 +50,21 @@
             android:background="#2367809F"
             />
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:visibility="gone"
             android:id="@+id/shimmers"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <include layout="@layout/shimer_data_skim"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="8dp">
+            <include layout="@layout/shimmer_detail_disposisi" />
         </com.facebook.shimmer.ShimmerFrameLayout>
+
 
 
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/coreView"
             >
             <LinearLayout
                 android:id="@+id/base_layout"
@@ -78,6 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="nama debitur"
+                        android:id="@+id/tvnd"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp"
@@ -87,6 +91,8 @@
                         />
                     <TextView
                         android:id="@+id/tvNameDebitur"
+                        android:layout_toEndOf="@id/tvnd"
+                        android:gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -106,6 +112,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="KTP debitur"
+                        android:id="@+id/tvd"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp"
@@ -114,6 +121,8 @@
                         />
                     <TextView
                         android:id="@+id/tvKtpDebitur"
+                        android:layout_toEndOf="@id/tvd"
+                        android:gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -132,6 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="penjamin"
+                        android:id="@+id/tvp"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp"
@@ -140,6 +150,8 @@
                         />
                     <TextView
                         android:id="@+id/tvNamePenjamin"
+                        android:layout_toEndOf="@id/tvp"
+                        android:gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -158,6 +170,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="KTP penjamin"
+                        android:id="@+id/tvkp"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp"
@@ -170,6 +183,8 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         tools:text="17-November-2020"
+                        android:layout_toEndOf="@id/tvkp"
+                        android:gravity="end"
                         android:padding="10dp"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="16dp"
@@ -185,6 +200,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="sektor usaha"
+                        android:id="@+id/tvs"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp"
@@ -193,12 +209,14 @@
                         />
                     <TextView
                         android:id="@+id/tvSektorUsaha"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         tools:text="17-November-2020"
                         android:padding="10dp"
                         android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/tvs"
+                        android:gravity="end"
                         android:layout_marginEnd="16dp"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/poppins_regular"
@@ -285,6 +303,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Plafond"
+                        android:id="@+id/tvpl"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp"
@@ -293,6 +312,8 @@
                         />
                     <TextView
                         android:id="@+id/tvPlafond"
+                        android:layout_toEndOf="@id/tvpl"
+                        android:gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -312,6 +333,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jangka waktu"
+                        android:id="@+id/tvjw"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp"
@@ -320,6 +342,8 @@
                         />
                     <TextView
                         android:id="@+id/tvJangkaWaktu"
+                        android:layout_toEndOf="@id/tvjw"
+                        android:gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -339,6 +363,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Skim Kredit"
+                        android:id="@+id/tvsk"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp"
@@ -347,6 +372,8 @@
                         />
                     <TextView
                         android:id="@+id/tvSkimKredit"
+                        android:layout_toEndOf="@id/tvsk"
+                        android:gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -366,6 +393,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Petugas"
+                        android:id="@+id/tvnp"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp"
@@ -374,6 +402,8 @@
                         />
                     <TextView
                         android:id="@+id/tvPetugas"
+                        android:layout_toEndOf="@id/tvnp"
+                        android:gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -455,6 +485,7 @@
                         android:padding="5dp"
                         android:baselineAligned="false">
                         <RelativeLayout
+                            android:id="@+id/ly1"
                             android:layout_width="140dp"
                             android:layout_height="match_parent"
                             tools:ignore="UselessParent">
@@ -496,6 +527,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/ly2"
                             android:layout_width="140dp"
                             android:layout_marginEnd="5dp"
                             android:layout_height="match_parent"
@@ -537,6 +569,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/ly3"
                             android:layout_width="140dp"
                             android:layout_height="match_parent"
                             tools:ignore="UselessParent">
@@ -577,6 +610,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/ly4"
                             android:layout_width="140dp"
                             android:layout_height="match_parent"
                             tools:ignore="UselessParent">
@@ -616,6 +650,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/ly5"
                             android:layout_width="140dp"
                             android:layout_height="match_parent"
                             tools:ignore="UselessParent">
@@ -655,6 +690,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/ly6"
                             android:layout_width="140dp"
                             android:layout_height="match_parent"
                             tools:ignore="UselessParent">
@@ -694,6 +730,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/ly7"
                             android:layout_width="140dp"
                             android:layout_height="match_parent"
                             tools:ignore="UselessParent">
@@ -733,6 +770,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/ly8"
                             android:layout_width="140dp"
                             android:layout_height="match_parent"
                             tools:ignore="UselessParent">
@@ -801,6 +839,242 @@
                     android:text="@string/lokasi_usaha"
                     android:textAllCaps="false"
                     android:id="@+id/btnLocation"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLocations"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="#2367809F"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lokasi Rumah dan Foto Rumah"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:layout_marginTop="10dp"
+                    />
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout_image1"
+                    android:layout_marginStart="20dp"
+                    android:fillViewport="true"
+                    android:scrollbars="none"
+
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="110dp"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:baselineAligned="false">
+                        <RelativeLayout
+                            android:id="@+id/ly11"
+                            android:layout_width="140dp"
+                            android:layout_height="match_parent"
+                            tools:ignore="UselessParent">
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/frame11"
+                                >
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="match_parent"
+                                    app:cardCornerRadius="10dp"
+                                    android:id="@+id/cv11"
+                                    app:strokeWidth="2dp"
+                                    android:layout_height="match_parent">
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        tools:ignore="UselessLeaf">
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:src="@drawable/ic_add_gray"
+                                            tools:ignore="ContentDescription" />
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/border"
+                                            android:padding="2dp"
+                                            android:scaleType="fitXY"
+                                            android:id="@+id/image11"
+                                            tools:ignore="ContentDescription" />
+
+                                    </RelativeLayout>
+                                </com.google.android.material.card.MaterialCardView>
+                            </FrameLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/ly12"
+                            android:layout_width="140dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_height="match_parent"
+                            tools:ignore="UselessParent">
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginTop="10dp"
+                                >
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="match_parent"
+                                    android:id="@+id/cv12"
+                                    app:cardCornerRadius="10dp"
+                                    app:strokeWidth="2dp"
+                                    android:elevation="0dp"
+                                    android:layout_height="match_parent">
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        tools:ignore="UselessLeaf">
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:src="@drawable/ic_add_gray"
+                                            tools:ignore="ContentDescription" />
+                                        <ImageView
+                                            android:padding="2dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/border"
+                                            android:scaleType="fitXY"
+                                            android:id="@+id/image12"
+                                            tools:ignore="ContentDescription" />
+                                    </RelativeLayout>
+                                </com.google.android.material.card.MaterialCardView>
+                            </FrameLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/ly13"
+                            android:layout_width="140dp"
+                            android:layout_height="match_parent"
+                            tools:ignore="UselessParent">
+                            <FrameLayout
+                                android:layout_marginEnd="8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp">
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="match_parent"
+                                    app:cardCornerRadius="10dp"
+                                    app:strokeWidth="2dp"
+                                    android:id="@+id/cv13"
+                                    android:elevation="0dp"
+                                    android:layout_height="match_parent">
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        tools:ignore="UselessLeaf">
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:src="@drawable/ic_add_gray"
+                                            tools:ignore="ContentDescription" />
+                                        <ImageView
+                                            android:padding="2dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/border"
+                                            android:scaleType="fitXY"
+                                            android:id="@+id/image13"
+                                            tools:ignore="ContentDescription" />
+
+                                    </RelativeLayout>
+                                </com.google.android.material.card.MaterialCardView>
+                            </FrameLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/ly14"
+                            android:layout_width="140dp"
+                            android:layout_height="match_parent"
+                            tools:ignore="UselessParent">
+                            <FrameLayout
+                                android:layout_marginEnd="8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp">
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="match_parent"
+                                    app:cardCornerRadius="10dp"
+                                    android:elevation="0dp"
+                                    android:id="@+id/cv14"
+                                    app:strokeWidth="2dp"
+                                    android:layout_height="match_parent">
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        tools:ignore="UselessLeaf">
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:src="@drawable/ic_add_gray"
+                                            tools:ignore="ContentDescription" />
+                                        <ImageView
+                                            android:padding="2dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/border"
+                                            android:scaleType="fitXY"
+                                            android:id="@+id/image14"
+                                            tools:ignore="ContentDescription" />
+                                    </RelativeLayout>
+                                </com.google.android.material.card.MaterialCardView>
+                            </FrameLayout>
+                        </RelativeLayout>
+
+
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tvLocationHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="@string/tambahkan_lokasi_rumah_debitur"
+                        android:padding="10dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="16dp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        />
+                </RelativeLayout>
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lokasi_usaha"
+                    android:textAllCaps="false"
+                    android:id="@+id/btnLocationHome"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/tvLocations"

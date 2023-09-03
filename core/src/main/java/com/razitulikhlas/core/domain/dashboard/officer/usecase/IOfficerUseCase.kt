@@ -23,5 +23,9 @@ interface IOfficerUseCase {
         image8: MultipartBody.Part?,
     ): Flow<ApiResponse<ResponseInsertInfoUsaha>>
 
+    suspend fun search(pemohon:String) : Flow<ApiResponse<ResponseSearch>>
+
+    suspend fun detailDisposisi(id:Int) : Flow<ApiResponse<ResponseDetailDisposisi>>
+
 
 }

@@ -3,6 +3,7 @@ package com.razitulikhlas.banknagari.ui.permohonan
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -86,6 +87,7 @@ class InsertApplicationActivity : AppCompatActivity() {
                     edPhone.text.toString(),edDebitur.text.toString(),edTimeLoan.text.toString().toInt(),null,edktpdebitur.text.toString(),null)
                 lifecycleScope.launch {
 //                    saveContact()
+                    Log.e("TAG", "saveData: $plafond", )
                    viewModel.insert(disposisi).observeForever {
                        when(it){
                            is ApiResponse.Success->{
@@ -97,6 +99,7 @@ class InsertApplicationActivity : AppCompatActivity() {
                                showMessage("Sukses")
                            }
                            is ApiResponse.Error->{
+                               Log.e("TAG", "saveData:eror ${it.errorMessage}", )
                                showMessage(it.errorMessage)
                            }
                            is ApiResponse.Empty->{

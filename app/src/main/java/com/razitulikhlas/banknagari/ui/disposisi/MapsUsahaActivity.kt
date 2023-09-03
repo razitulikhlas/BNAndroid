@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender
+import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.util.Log.e
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +34,7 @@ import com.razitulikhlas.banknagari.R
 import com.razitulikhlas.banknagari.databinding.ActivityMapsUsahaBinding
 import com.razitulikhlas.banknagari.ui.mapping.getAddress
 import com.razitulikhlas.banknagari.ui.permohonan.OfficerViewModel
+import com.razitulikhlas.banknagari.utils.AppConstant
 import com.razitulikhlas.banknagari.utils.AppPermission
 import com.razitulikhlas.core.data.source.remote.network.ApiResponse
 import com.razitulikhlas.core.data.source.remote.response.DataImage
@@ -48,6 +51,7 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -61,6 +65,8 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
     var latitude : Double? = null
     var longitude : Double? = null
     var address : String? = null
+
+    var images = ArrayList<String>()
 
     private val viewModel : OfficerViewModel by viewModel()
 
@@ -93,13 +99,13 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
             setAlwaysShow(true)
         }.build()
         if(permission.isLocationOk(this)){
-            Log.e("TAG", "onCreate: request Permission ok")
+            e("TAG", "onCreate: request Permission ok")
             checkGPS()
         }else if(permission.showPermissionRequestPermissionRationale(this)){
-            Log.e("TAG", "onCreate: request Permission ok1")
+            e("TAG", "onCreate: request Permission ok1")
             permission.showDialogShowRequestPermissionRationale(this)
         }else{
-            Log.e("TAG", "onCreate: request Permission ok2")
+            e("TAG", "onCreate: request Permission ok2")
             permission.requestPermissionLocation(this)
         }
 
@@ -110,8 +116,9 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding.btnLocation.setOnClickListener {
 //            val img1 = prepareFilePart("image1", images1, this)
+            val id = intent.getIntExtra("id",0)
             val dataImage = DataImage(null,
-                null,"1",
+                null,id.toString(),
                 null,address,
                 null,longitude.toString(),
                 null,latitude.toString())
@@ -132,6 +139,7 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                             showMessage("Sukses upload foto")
                             val intent = Intent()
                             intent.putExtra("location",address)
+                            intent.putExtra("images",images)
                             setResult(RESULT_OK, intent)
                             finish()
                         }
@@ -220,7 +228,7 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                             val re = it as ResolvableApiException
                             re.startResolutionForResult(this@MapsUsahaActivity,  0x1)
                         } catch (sie: IntentSender.SendIntentException) {
-                            Log.e("TAG", "Error")
+                            e("TAG", "Error")
                         }
                     }
                     LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
@@ -324,49 +332,49 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun imageClick(){
         with(binding){
             image1.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images1 == null){
                     getImage(1)
                 }
             }
             image2.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images2 == null){
                     getImage(2)
                 }
             }
             image3.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images3 == null){
                     getImage(3)
                 }
             }
             image4.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images4 == null){
                     getImage(4)
                 }
             }
             image5.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images5 == null){
                     getImage(5)
                 }
             }
             image6.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images6 == null){
                     getImage(6)
                 }
             }
             image7.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images7 == null){
                     getImage(7)
                 }
             }
             image8.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images8 == null){
                     getImage(8)
                 }
@@ -432,7 +440,7 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                     startForProfileImageResult7.launch(it)
                 }
         }else if(image == 8){
-            Log.e("TAG", "getImage8: ", )
+            e("TAG", "getImage8: ", )
             ImagePicker.with(this)
                 .crop()
                 .compress(1024)
@@ -455,7 +463,12 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                     images1 = data?.data!!
 //                    val photo = fileUri
                     with(binding){
-                        image1.setImageURI(images1)
+                        e("da",images1.toString())
+
+                        images1?.let{
+                            image1.setImageURI(it)
+                            images.add(it.toString())
+                        }
 //                        var originalFile = File(images1!!.path!!)
 //                        e("TAG", "size sebelum di compress: ${getReadableFileSize(originalFile.length())}")
                         del1.visibility = View.VISIBLE
@@ -484,7 +497,10 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                         images2 = data?.data!!
 //                    val photo = fileUri
                         with(binding){
-                            image2.setImageURI(images2)
+                            images2?.let{
+                                image2.setImageURI(it)
+                                images.add(it.toString())
+                            }
                             del2.visibility = View.VISIBLE
                         }
                     }
@@ -507,7 +523,10 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                             images3 = data?.data!!
 //                    val photo = fileUri
                             with(binding){
-                                image3.setImageURI(images3)
+                                images3?.let{
+                                    image3.setImageURI(it)
+                                    images.add(it.toString())
+                                }
                                 del3.visibility = View.VISIBLE
                             }
                         }
@@ -528,9 +547,11 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                             Activity.RESULT_OK -> {
                                 //Image Uri will not be null for RESULT_OK
                                 images4 = data?.data!!
-//                    val photo = fileUri
                                 with(binding){
-                                    image4.setImageURI(images4)
+                                    images4?.let{
+                                        image4.setImageURI(it)
+                                        images.add(it.toString())
+                                    }
                                     del4.visibility = View.VISIBLE
                                 }
                             }
@@ -553,7 +574,10 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                                     images5 = data?.data!!
 //                    val photo = fileUri
                                     with(binding){
-                                        image5.setImageURI(images5)
+                                        images5?.let{
+                                            image5.setImageURI(it)
+                                            images.add(it.toString())
+                                        }
                                         del5.visibility = View.VISIBLE
                                     }
                                 }
@@ -577,7 +601,10 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                     images6 = data?.data!!
 //                    val photo = fileUri
                     with(binding){
-                        image6.setImageURI(images6)
+                        images6?.let{
+                            image6.setImageURI(it)
+                            images.add(it.toString())
+                        }
                         del6.visibility = View.VISIBLE
                     }
                 }
@@ -601,7 +628,10 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                     images7= data?.data!!
 //                    val photo = fileUri
                     with(binding){
-                        image7.setImageURI(images7)
+                        images7?.let{
+                            image7.setImageURI(it)
+                            images.add(it.toString())
+                        }
                         del7.visibility = View.VISIBLE
                     }
                 }
@@ -625,7 +655,10 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                     images8 = data?.data!!
 //                    val photo = fileUri
                     with(binding){
-                        image8.setImageURI(images8)
+                        images8?.let{
+                            image8.setImageURI(it)
+                            images.add(it.toString())
+                        }
                         del8.visibility = View.VISIBLE
                     }
                 }
@@ -637,5 +670,29 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if(requestCode == AppConstant.LOCATION_REQUEST_CODE) {
+            Log.e("TAG", "onRequestPermissionsResult: 1")
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.e("TAG", "onRequestPermissionsResult: 2")
+
+                checkGPS()
+            }else if(permission.showPermissionRequestPermissionRationale(this)){
+                Log.e("TAG", "onRequestPermissionsResult: 3")
+                permission.showDialogShowRequestPermissionLocation(this)
+            }else{
+                Log.e("TAG", "onRequestPermissionsResult: 4")
+                permission.showDialogShowRequestPermissionLocation(this)
+
+            }
+        }
+    }
 
 }

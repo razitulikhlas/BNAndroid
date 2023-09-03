@@ -17,6 +17,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
         buildConfigField "String", "BASE_URL", "\"https://api.lensaexpo.com/\""
+        buildConfigField "String", "BASE_URL_IMAGE", "\"https://api.lensaexpo.com/images/\""
     }
 
     buildTypes {

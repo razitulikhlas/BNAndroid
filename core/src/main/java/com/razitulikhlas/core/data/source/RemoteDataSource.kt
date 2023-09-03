@@ -63,6 +63,22 @@ class RemoteDataSource(private val apiService: ApiService){
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun detailDisposisi(id:Int):Flow<ApiResponse<ResponseDetailDisposisi>>{
+        return flow{
+            try {
+                val response = apiService.detailDisposisi(id)
+
+                if(response.success == true){
+                    emit(ApiResponse.Success(response))
+                }else{
+                    emit(ApiResponse.Empty)
+                }
+            }catch (e:Exception){
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun insertDisposisi(item:DataItemSkim):Flow<ApiResponse<ResponseDataSkim>>{
         return flow{
             try{
@@ -75,7 +91,7 @@ class RemoteDataSource(private val apiService: ApiService){
                     item.phone!!,
                     item.skimKredit!!,
                     item.sektorUsaha!!,
-                    item.plafond!!.toInt(),
+                    item.plafond!!,
                     item.jangkaWaktu!!.toInt()
                 )
 
@@ -139,6 +155,21 @@ class RemoteDataSource(private val apiService: ApiService){
                     emit(ApiResponse.Empty)
                 }
             }catch(e:Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun search(s: String) : Flow<ApiResponse<ResponseSearch>>{
+        return flow {
+            try {
+                val response = apiService.search(s)
+                if (response.success == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
             }
         }.flowOn(Dispatchers.IO)

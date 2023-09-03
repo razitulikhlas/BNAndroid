@@ -83,7 +83,7 @@
                                     android:layout_height="match_parent"
                                     android:src="@drawable/border"
                                     android:padding="2dp"
-                                    android:scaleType="fitCenter"
+                                    android:scaleType="fitXY"
                                     android:id="@+id/image1"
                                     tools:ignore="ContentDescription" />
 
@@ -133,7 +133,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/border"
-                                    android:scaleType="fitCenter"
+                                    android:scaleType="fitXY"
                                     android:id="@+id/image2"
                                     tools:ignore="ContentDescription" />
 
@@ -183,7 +183,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/border"
-                                    android:scaleType="fitCenter"
+                                    android:scaleType="fitXY"
                                     android:id="@+id/image3"
                                     tools:ignore="ContentDescription" />
 
@@ -231,7 +231,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/border"
-                                    android:scaleType="fitCenter"
+                                    android:scaleType="fitXY"
                                     android:id="@+id/image4"
                                     tools:ignore="ContentDescription" />
                             </RelativeLayout>
@@ -279,7 +279,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/border"
-                                    android:scaleType="fitCenter"
+                                    android:scaleType="fitXY"
                                     android:id="@+id/image5"
                                     tools:ignore="ContentDescription" />
                             </RelativeLayout>
@@ -327,7 +327,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/border"
-                                    android:scaleType="fitCenter"
+                                    android:scaleType="fitXY"
                                     android:id="@+id/image6"
                                     tools:ignore="ContentDescription" />
                             </RelativeLayout>
@@ -375,7 +375,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/border"
-                                    android:scaleType="fitCenter"
+                                    android:scaleType="fitXY"
                                     android:id="@+id/image7"
                                     tools:ignore="ContentDescription" />
                             </RelativeLayout>
@@ -423,7 +423,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/border"
-                                    android:scaleType="fitCenter"
+                                    android:scaleType="fitXY"
                                     android:id="@+id/image8"
                                     tools:ignore="ContentDescription" />
                             </RelativeLayout>

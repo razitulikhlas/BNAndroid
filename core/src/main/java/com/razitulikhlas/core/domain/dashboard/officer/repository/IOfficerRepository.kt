@@ -22,4 +22,8 @@ interface IOfficerRepository {
     suspend fun updateStatusDisposisi(id:Int,status:Int,informasi:String): Flow<ApiResponse<ResponseNormal>>
     suspend fun saveClient(clientEntity: ClientEntity) : Long
     fun getDetailClient(clientEntity: Long) : Flow<ClientEntity>
+
+    suspend fun search(pemohon:String) : Flow<ApiResponse<ResponseSearch>>
+    suspend fun detailDisposisi(id:Int) : Flow<ApiResponse<ResponseDetailDisposisi>>
+
 }

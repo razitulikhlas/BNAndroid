@@ -1,6 +1,7 @@
 package com.razitulikhlas.banknagari.ui.disposisi
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
@@ -15,6 +16,8 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -22,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
@@ -31,6 +35,8 @@ import com.razitulikhlas.banknagari.ui.mapping.getAddress
 import com.razitulikhlas.banknagari.ui.permohonan.OfficerViewModel
 import com.razitulikhlas.banknagari.utils.AppConstant.LOCATION_REQUEST_CODE
 import com.razitulikhlas.banknagari.utils.AppPermission
+import com.razitulikhlas.core.BuildConfig.BASE_URL_IMAGE
+//import com.razitulikhlas.core.BuildConfig.BASE_URL_IMAGE
 import com.razitulikhlas.core.data.source.local.client.ClientEntity
 import com.razitulikhlas.core.data.source.remote.network.ApiResponse
 import com.razitulikhlas.core.data.source.remote.response.DataItemSkim
@@ -38,13 +44,10 @@ import com.razitulikhlas.core.util.Constant.LEVEL_CHECK
 import com.razitulikhlas.core.util.maps.DefaultLocationClient
 import com.razitulikhlas.core.util.maps.LocationsClient
 import com.razitulikhlas.core.util.showToastShort
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.NumberFormat
@@ -89,36 +92,10 @@ class DetailDisposisiActivity : AppCompatActivity() {
 
         setImageResource()
 
-        binding.btnLocation.setOnClickListener {
-            Log.e("TAG", "onCreate: ${data.status}")
-            val intent = Intent(this, MapsUsahaActivity::class.java)
-            resultLocationRequest.launch(intent)
-//            startActivity(Intent(this,MapsUsahaActivity::class.java))
-//            if(data.status == 0 || data.status!! > 1){
-//                if(binding.tvLokasi.text.isNotEmpty()) {
-//                    val uri = Uri.parse("google.navigation:q=${latitude},${longitude}&mode=d")
-//                    val intent = Intent(Intent.ACTION_VIEW, uri)
-//                    intent.setPackage("com.google.android.apps.maps")
-//                    startActivity(intent)
-//                }
-//                Log.e("TAG", "onCreate: status cancel or diterima", )
-//            }else{
-//                Log.e("TAG", "onCreate: status di proses", )
-//                if(permission.isLocationOk(this)){
-//                    Log.e("TAG", "onCreate: request Permission ok", )
-//                    checkGPS()
-//                }else if(permission.showPermissionRequestPermissionRationale(this)){
-//                    Log.e("TAG", "onCreate: request Permission ok1", )
-//                    permission.showDialogShowRequestPermissionRationale(this)
-//                }else{
-//                    Log.e("TAG", "onCreate: request Permission ok2", )
-//                    permission.requestPermissionLocation(this)
-//                }
-//            }
-        }
         data = intent.getParcelableExtra<DataItemSkim>("data")!!
-        initCustomDialog(data?.id!!)
+        initCustomDialog(data.id!!)
         initViewComponents()
+
 
         Log.e("TAG", "onCreate: ${data}")
 
@@ -126,13 +103,13 @@ class DetailDisposisiActivity : AppCompatActivity() {
             binding.layoutBtn.visibility = View.GONE
 //            binding.btnLocation.visibility = View.GONE
 
-            lifecycleScope.launch {
-                viewModel.getClientId(data.id!!.toLong()).observeForever {
-                   binding.tvLokasi.text = it.address
-                    latitude = it.latitude
-                    longitude = it.longitude
-                }
-            }
+//            lifecycleScope.launch {
+//                viewModel.getClientId(data.id!!.toLong()).observeForever {
+//                   binding.tvLokasi.text = it.address
+//                    latitude = it.latitude
+//                    longitude = it.longitude
+//                }
+//            }
         }
 
         builder.setTitle("Proses permohonan")
@@ -150,16 +127,6 @@ class DetailDisposisiActivity : AppCompatActivity() {
 
 
         with(binding){
-            tvNameDebitur.text = data?.pemohon
-            tvKtpDebitur.text=data?.ktpPemohon
-            tvNamePenjamin.text=data?.penjamin
-            tvKtpPenjamin.text=data?.ktpPenjamin
-            tvSektorUsaha.text=data?.sektorUsaha
-            tvPlafond.text= formatRupiahh(data?.plafond!!.toDouble())
-            tvJangkaWaktu.text="${data.jangkaWaktu} bulan"
-            tvSkimKredit.text=data.skimKredit
-            tvInfo.text = data.keterangan
-
             ivPhone.setOnClickListener {
                 if(ActivityCompat.checkSelfPermission(this@DetailDisposisiActivity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(this@DetailDisposisiActivity, arrayOf(Manifest.permission.CALL_PHONE),10)
@@ -174,7 +141,6 @@ class DetailDisposisiActivity : AppCompatActivity() {
 
             btnProcess.setOnClickListener {
                 builder.show()
-
             }
 
             ivBack.setOnClickListener {
@@ -183,15 +149,169 @@ class DetailDisposisiActivity : AppCompatActivity() {
         }
     }
 
-    var resultLocationRequest = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    @SuppressLint("SetTextI18n")
+    private fun getDetailDisposisi() {
+        loadData()
+        lifecycleScope.launch {
+            delay(2000)
+            viewModel.detailDisposisi(data.id!!).observe(this@DetailDisposisiActivity){ it ->
+                when(it){
+                    is ApiResponse.Success->{
+                        Log.e("TAG", "getDetailDisposisi: ${it.data.data.toString()}", )
+                        val dataPos = it.data.data?.disposisi
+                        val dataBusiness = it.data.data?.infousaha
+                        val dataHome = it.data.data?.inforumah
+                        with(binding){
+
+                            tvNameDebitur.text = dataPos?.pemohon
+                            tvKtpDebitur.text=dataPos?.ktpPemohon
+                            tvNamePenjamin.text=dataPos?.penjamin
+                            tvKtpPenjamin.text=dataPos?.ktpPenjamin
+                            tvSektorUsaha.text=dataPos?.sektorUsaha
+                            tvPlafond.text= formatRupiahh(dataPos?.plafond!!.toDouble())
+                            tvJangkaWaktu.text="${dataPos.jangkaWaktu} bulan"
+                            tvSkimKredit.text=dataPos.skimKredit
+                            tvInfo.text = dataPos.keterangan
+                            tvPetugas.text = dataPos.user?.name
+
+                            if(data.status == 0){
+                                binding.btnLocation.visibility = View.GONE
+                                binding.tvLokasi.text = ""
+
+                            }
+
+                            if(dataBusiness?.address != null){
+                                 binding.btnLocation.text = "Menuju Lokasi"
+                            }else{
+                                 binding.btnLocation.text = "Tambahkan lokasi"
+                            }
+
+
+              binding.btnLocation.setOnClickListener {
+                        if(dataBusiness?.address!=null) {
+
+                            val uri = Uri.parse("google.navigation:q=${dataBusiness.latitude},${dataBusiness.longititude}&mode=d")
+                            val intent = Intent(Intent.ACTION_VIEW, uri)
+                            intent.setPackage("com.google.android.apps.maps")
+                            startActivity(intent)
+                        }
+                        else {
+                            val intent = Intent(this@DetailDisposisiActivity, MapsUsahaActivity::class.java)
+                            intent.putExtra("id",data.id)
+                            resultLocationRequest.launch(intent)
+                        }
+              }
+                            dataBusiness?.address?.let {
+                                tvLokasi.text = it
+                            }
+
+                            dataBusiness?.image1?.let {
+                                setImage(ly1,image1,it)
+                            }
+
+                            dataBusiness?.image2?.let {
+                                setImage(ly2,image2,it)
+                            }
+                            dataBusiness?.image3?.let {
+                                setImage(ly3,image3,it)
+                            }
+                            dataBusiness?.image4?.let {
+                                setImage(ly4,image4,it)
+                            }
+                            dataBusiness?.image5?.let {
+                                setImage(ly5,image5,it)
+                            }
+                            dataBusiness?.image6?.let {
+                                setImage(ly6,image6,it)
+                            }
+                            dataBusiness?.image7?.let {
+                                setImage(ly7,image7,it)
+                            }
+                            dataBusiness?.image8?.let {
+                                setImage(ly8,image8,it)
+                            }
+                        }
+                        showData()
+                    }
+                    is ApiResponse.Error->{
+                        Log.e("TAG", "getDetailDisposisi: ${it.errorMessage}", )
+                    }
+                    is ApiResponse.Empty->{
+
+                    }
+                }
+            }
+        }
+    }
+
+    private var resultLocationRequest = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             // There are no request codes
             val data: Intent? = result.data
             val location = data?.getStringExtra("location")
+            val images = data?.getStringArrayListExtra("images")
 
+
+            Log.e("TAG", "images: ${images.toString()}", )
             binding.tvLokasi.text = location
+            if(images != null){
+                for (index in 1 until images!!.size) {
+                    val item = images[index]
+                    if(index == 1){
+                        binding.ly1.visibility = View.VISIBLE
+                        binding.image1.setImageURI(item.toUri())
+                    }
+                    if(index == 2){
+                        binding.ly2.visibility = View.VISIBLE
+                        binding.image2.setImageURI(item.toUri())
+                    }
+                    if(index == 3){
+                        binding.ly3.visibility = View.VISIBLE
+                        binding.image3.setImageURI(item.toUri())
+                    }
+                    if(index == 4){
+                        binding.ly4.visibility = View.VISIBLE
+                        binding.image4.setImageURI(item.toUri())
+                    }
+                    if(index == 5){
+                        binding.ly5.visibility = View.VISIBLE
+                        binding.image5.setImageURI(item.toUri())
+                    }
+                    if(index == 6){
+                        binding.ly6.visibility = View.VISIBLE
+                        binding.image6.setImageURI(item.toUri())
+                    }
+                    if(index == 7){
+                        binding.ly7.visibility = View.VISIBLE
+                        binding.image7.setImageURI(item.toUri())
+                    }
+                    if(index == 8){
+                        binding.ly8.visibility = View.VISIBLE
+                        binding.image8.setImageURI(item.toUri())
+                    }
+
+                    binding.btnLocation.visibility = View.GONE
+
+                }
+            }
 
         }
+    }
+
+    fun setImage(ly:RelativeLayout,image:ImageView,url:String){
+
+        image.setOnClickListener {
+            val intent = Intent(this@DetailDisposisiActivity,PhotoBusinessActivity::class.java)
+            intent.putExtra("image",url)
+            startActivity(intent)
+        }
+        ly.visibility = View.VISIBLE
+
+        Glide
+            .with(this@DetailDisposisiActivity)
+            .load(BASE_URL_IMAGE+url)
+//            .centerCrop()
+            .into(image)
     }
 
     override fun onRequestPermissionsResult(
@@ -233,7 +353,7 @@ class DetailDisposisiActivity : AppCompatActivity() {
         txtInputKet = customDialog.findViewById(R.id.ket)
         btnInsertName =customDialog.findViewById(R.id.btnCancelld)
         btnInsertName.setOnClickListener {
-            val name: String = txtInputKet.getText().toString()
+            val name: String = txtInputKet.text.toString()
             updateDisposisi(id,0,name)
             customDialog.dismiss()
         }
@@ -241,6 +361,7 @@ class DetailDisposisiActivity : AppCompatActivity() {
     }
 
     private fun initViewComponents() {
+        getDetailDisposisi()
         with(binding){
             if(LEVEL_CHECK < 2){
                 btnCancell.visibility = View.GONE
@@ -256,19 +377,15 @@ class DetailDisposisiActivity : AppCompatActivity() {
 
     private fun setImageResource(){
         with(binding){
-            image1.setOnClickListener {
-                val intent = Intent(this@DetailDisposisiActivity,PhotoBusinessActivity::class.java)
-                intent.putExtra("image","/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg")
-                startActivity(intent)
-            }
-            image1.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image2.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image3.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image4.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image5.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image6.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image7.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image8.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
+
+            ly1.visibility = View.GONE
+            ly2.visibility = View.GONE
+            ly3.visibility = View.GONE
+            ly4.visibility = View.GONE
+            ly5.visibility = View.GONE
+            ly6.visibility = View.GONE
+            ly7.visibility = View.GONE
+            ly8.visibility = View.GONE
         }
     }
 
@@ -292,6 +409,22 @@ class DetailDisposisiActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+
+    private fun loadData(){
+        with(binding) {
+            coreView.visibility = View.GONE
+            shimmers.visibility = View.VISIBLE
+            shimmers.startShimmer()
+        }
+    }
+
+    private fun showData(){
+        with(binding) {
+            coreView.visibility = View.VISIBLE
+            shimmers.visibility = View.GONE
+            shimmers.stopShimmer()
         }
     }
 
