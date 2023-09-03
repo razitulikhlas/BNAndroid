@@ -36,4 +36,6 @@ class OfficerRepository(val remoteDataSource: RemoteDataSource,val localDataSour
     override suspend fun saveClient(clientEntity: ClientEntity): Long = localDataSource.saveClient(clientEntity)
 
     override fun getDetailClient(clientEntity: Long): Flow<ClientEntity> = localDataSource.getDetailClient(clientEntity)
+
+    override suspend fun search(pemohon: String): Flow<ApiResponse<ResponseSearch>> = remoteDataSource.search(pemohon)
 }

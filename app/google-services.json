@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1006044178251-648mubja8ftaq67qfi236djfkff0cqgo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.razitulikhlas.banknagari",
+            "certificate_hash": "7ece9ade8ac4c1e5c33bf3f06f21694ef24fbb08"
+          }
+        },
+        {
           "client_id": "1006044178251-duaj0uqlsr8idiajgghboic7lrbjks98.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

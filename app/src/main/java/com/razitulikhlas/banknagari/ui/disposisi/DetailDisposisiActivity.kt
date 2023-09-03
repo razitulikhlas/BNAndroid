@@ -258,17 +258,17 @@ class DetailDisposisiActivity : AppCompatActivity() {
         with(binding){
             image1.setOnClickListener {
                 val intent = Intent(this@DetailDisposisiActivity,PhotoBusinessActivity::class.java)
-                intent.putExtra("image","/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg")
+                intent.putExtra("image","/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230902_123045155.jpg")
                 startActivity(intent)
             }
-            image1.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image2.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image3.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image4.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image5.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image6.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image7.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
-            image8.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230828_203924386.jpg".toUri())
+            image1.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230902_123045155.jpg".toUri())
+            image2.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230902_123045155.jpg".toUri())
+            image3.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230902_123045155.jpg".toUri())
+            image4.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230902_123045155.jpg".toUri())
+            image5.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230902_123045155.jpg".toUri())
+            image6.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230902_123045155.jpg".toUri())
+            image7.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230902_123045155.jpg".toUri())
+            image8.setImageURI("/storage/emulated/0/Android/data/com.razitulikhlas.banknagari/files/DCIM/IMG_20230902_123045155.jpg".toUri())
         }
     }
 

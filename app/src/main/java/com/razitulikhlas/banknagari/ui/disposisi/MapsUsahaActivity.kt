@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender
+import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
@@ -32,6 +33,7 @@ import com.razitulikhlas.banknagari.R
 import com.razitulikhlas.banknagari.databinding.ActivityMapsUsahaBinding
 import com.razitulikhlas.banknagari.ui.mapping.getAddress
 import com.razitulikhlas.banknagari.ui.permohonan.OfficerViewModel
+import com.razitulikhlas.banknagari.utils.AppConstant
 import com.razitulikhlas.banknagari.utils.AppPermission
 import com.razitulikhlas.core.data.source.remote.network.ApiResponse
 import com.razitulikhlas.core.data.source.remote.response.DataImage
@@ -93,13 +95,13 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
             setAlwaysShow(true)
         }.build()
         if(permission.isLocationOk(this)){
-            Log.e("TAG", "onCreate: request Permission ok")
+            e("TAG", "onCreate: request Permission ok")
             checkGPS()
         }else if(permission.showPermissionRequestPermissionRationale(this)){
-            Log.e("TAG", "onCreate: request Permission ok1")
+            e("TAG", "onCreate: request Permission ok1")
             permission.showDialogShowRequestPermissionRationale(this)
         }else{
-            Log.e("TAG", "onCreate: request Permission ok2")
+            e("TAG", "onCreate: request Permission ok2")
             permission.requestPermissionLocation(this)
         }
 
@@ -220,7 +222,7 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                             val re = it as ResolvableApiException
                             re.startResolutionForResult(this@MapsUsahaActivity,  0x1)
                         } catch (sie: IntentSender.SendIntentException) {
-                            Log.e("TAG", "Error")
+                            e("TAG", "Error")
                         }
                     }
                     LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
@@ -324,49 +326,49 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun imageClick(){
         with(binding){
             image1.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images1 == null){
                     getImage(1)
                 }
             }
             image2.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images2 == null){
                     getImage(2)
                 }
             }
             image3.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images3 == null){
                     getImage(3)
                 }
             }
             image4.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images4 == null){
                     getImage(4)
                 }
             }
             image5.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images5 == null){
                     getImage(5)
                 }
             }
             image6.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images6 == null){
                     getImage(6)
                 }
             }
             image7.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images7 == null){
                     getImage(7)
                 }
             }
             image8.setOnClickListener {
-                Log.e("TAG", "imageClick1: ", )
+                e("TAG", "imageClick1: ", )
                 if(images8 == null){
                     getImage(8)
                 }
@@ -432,7 +434,7 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                     startForProfileImageResult7.launch(it)
                 }
         }else if(image == 8){
-            Log.e("TAG", "getImage8: ", )
+            e("TAG", "getImage8: ", )
             ImagePicker.with(this)
                 .crop()
                 .compress(1024)
@@ -455,6 +457,7 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                     images1 = data?.data!!
 //                    val photo = fileUri
                     with(binding){
+                        e("da",images1.toString())
                         image1.setImageURI(images1)
 //                        var originalFile = File(images1!!.path!!)
 //                        e("TAG", "size sebelum di compress: ${getReadableFileSize(originalFile.length())}")
@@ -637,5 +640,29 @@ class MapsUsahaActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if(requestCode == AppConstant.LOCATION_REQUEST_CODE) {
+            Log.e("TAG", "onRequestPermissionsResult: 1")
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.e("TAG", "onRequestPermissionsResult: 2")
+
+                checkGPS()
+            }else if(permission.showPermissionRequestPermissionRationale(this)){
+                Log.e("TAG", "onRequestPermissionsResult: 3")
+                permission.showDialogShowRequestPermissionLocation(this)
+            }else{
+                Log.e("TAG", "onRequestPermissionsResult: 4")
+                permission.showDialogShowRequestPermissionLocation(this)
+
+            }
+        }
+    }
 
 }

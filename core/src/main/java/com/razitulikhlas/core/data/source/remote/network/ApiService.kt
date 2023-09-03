@@ -52,6 +52,11 @@ interface ApiService {
         @Path("level") level:Int
     ):ResponseDataSkim
 
+    @GET("/api/v1/disposisi/search/{pemohon}")
+    suspend fun search(
+        @Path("pemohon") pemohon:String
+    ):ResponseSearch
+
     @Multipart
     @POST("/api/v1/infousaha")
     suspend fun insertInfoUsaha(

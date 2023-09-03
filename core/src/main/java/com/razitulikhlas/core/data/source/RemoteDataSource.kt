@@ -144,6 +144,21 @@ class RemoteDataSource(private val apiService: ApiService){
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun search(s: String) : Flow<ApiResponse<ResponseSearch>>{
+        return flow {
+            try {
+                val response = apiService.search(s)
+                if (response.success == true) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
 
 
 
